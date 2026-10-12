@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#176b55"><title>Sistema Tarefas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--green:#176b55;--green2:#21866b;--ink:#1c2c28;--muted:#6c7b76;--bg:#f4f7f5;--line:#e1e9e4;--white:#fff;--red:#b84141;--amber:#a76714;--shadow:0 8px 24px #183c2c0a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:14px}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.app{max-width:1240px;margin:auto;padding:22px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}.brand{display:flex;align-items:center;gap:12px}.logo{height:44px;width:44px;border-radius:14px;background:var(--green);color:white;display:grid;place-items:center;font-size:23px}.brand h1{font-size:20px;margin:0}.brand p{color:var(--muted);margin:4px 0 0;font-size:12px}.date-label{color:var(--muted);font-size:12px}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}.nav button{border:1px solid var(--line);background:white;color:var(--muted);padding:11px 15px;border-radius:12px;font-weight:700}.nav button.active{background:var(--green);color:white;border-color:var(--green)}.notice{padding:12px 14px;border-radius:12px;margin-bottom:16px;background:#fff6df;color:#77500c;display:none}.notice.show{display:block}.view{display:none}.view.active{display:block}.heading{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin:6px 0 18px}.heading h2{margin:0;font-size:23px;letter-spacing:-.5px}.heading p{margin:6px 0 0;color:var(--muted)}.btn{border:0;background:var(--green);color:white;padding:11px 15px;border-radius:11px;font-weight:700}.btn:hover{background:var(--green2)}.btn.secondary{background:#e8f2ed;color:var(--green)}.btn.ghost{background:white;color:var(--ink);border:1px solid var(--line)}.btn.danger{background:#fff0f0;color:var(--red)}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.stat,.panel,.task,.item-card{background:white;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.stat{padding:17px}.stat .label{font-size:12px;color:var(--muted)}.stat strong{display:block;font-size:28px;margin-top:7px}.stat small{color:var(--muted)}.panel{padding:18px;margin-bottom:16px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.panel h3{font-size:15px;margin:0}.muted{color:var(--muted)}.task-list,.item-list{display:grid;gap:10px}.task{padding:14px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;box-shadow:none}.task input[type=checkbox],.checkline input{accent-color:var(--green);width:18px;height:18px;margin-top:2px}.task.done .task-title{text-decoration:line-through;color:#82908a}.task-title{font-weight:700}.task-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}.pill{font-size:11px;border-radius:100px;background:#edf4f0;color:#41675a;padding:4px 8px}.pill.overdue{background:#fff0f0;color:var(--red)}.task-actions{display:flex;gap:6px}.icon-btn{border:1px solid var(--line);background:white;border-radius:9px;padding:7px 9px;color:var(--muted)}.obs{grid-column:2/4;width:100%;min-height:38px;resize:vertical;border:1px solid var(--line);border-radius:9px;padding:9px;color:var(--ink)}.progress{height:8px;background:#eaf0ec;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:var(--green2);border-radius:99px}.chart-wrap{height:220px;display:flex;align-items:end;gap:12px;padding:15px 5px 0;border-bottom:1px solid var(--line)}.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:end;height:100%;gap:7px;min-width:0}.bar{width:min(38px,80%);min-height:3px;background:#2a9675;border-radius:7px 7px 0 0}.bar-label{font-size:10px;color:var(--muted)}.bar-val{font-size:10px;font-weight:700}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-weight:700;font-size:12px}.field input,.field select,.field textarea,.search{width:100%;border:1px solid #dce6df;background:white;border-radius:10px;padding:11px 12px;outline:none;color:var(--ink)}.field input:focus,.field select:focus,.field textarea:focus,.search:focus{border-color:var(--green2);box-shadow:0 0 0 3px #21866b17}.field textarea{min-height:80px;resize:vertical}.form-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}.inline{display:flex;gap:8px;align-items:center}.inline>*{flex:1}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.toolbar .search{flex:1;min-width:160px}.toolbar select{max-width:210px}.item-card{padding:15px;box-shadow:none}.item-top{display:flex;justify-content:space-between;gap:10px}.item-card h4{margin:0 0 7px;font-size:15px}.item-card p{color:var(--muted);margin:0 0 12px;font-size:12px}.item-card .item-actions{display:flex;gap:7px;margin-top:12px}.item-actions button{padding:8px 10px;font-size:12px}.empty{text-align:center;padding:32px 12px;color:var(--muted)}.empty .emoji{font-size:30px;margin-bottom:8px}.buy-row{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.buy-row:last-child{border-bottom:0}.buy-row.checked .buy-desc{text-decoration:line-through;color:#82908a}.qty{font-size:12px;color:var(--muted);white-space:nowrap}.category-manager{display:flex;gap:8px;flex-wrap:wrap}.category-chip{display:flex;gap:7px;align-items:center;padding:7px 10px;background:#eef4f0;border-radius:9px}.category-chip button{border:0;background:transparent;color:var(--red);font-weight:800}.hidden{display:none!important}.foot{color:var(--muted);font-size:11px;text-align:center;padding:18px 0}.loading{opacity:.65;pointer-events:none}
+@media(max-width:760px){.app{padding:14px}.top{align-items:flex-start}.date-label{text-align:right;max-width:130px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat{padding:13px}.stat strong{font-size:24px}.heading{align-items:flex-start}.heading h2{font-size:20px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.task{grid-template-columns:auto 1fr}.task-actions{grid-column:2}.obs{grid-column:2}.nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.nav button{padding:10px 5px;font-size:12px}.toolbar select{max-width:none;flex:1}.panel{padding:14px}.buy-row{grid-template-columns:auto 1fr auto}.buy-row .buy-delete{grid-column:3}.heading .btn{white-space:nowrap;padding:10px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="brand"><div class="logo">✓</div><div><h1>Sistema Tarefas</h1><p>Organize o dia. Acompanhe sua evolução.</p></div></div><div class="date-label" id="todayLabel"></div></header>
+<div id="notice" class="notice" role="status"></div>
+<nav class="nav" aria-label="Navegação principal">
+<button class="active" data-view="home">Hoje</button><button data-view="items">Itens</button><button data-view="dashboard">Dashboard</button><button data-view="shopping">Lista de compras</button><button data-view="categories">Categorias</button>
+</nav>
+<main>
+<section id="view-home" class="view active">
+<div class="heading"><div><h2>Seu dia, no seu ritmo</h2><p>Marque o que concluir e registre observações quando precisar.</p></div><button class="btn" id="quickAdd">+ Novo item</button></div>
+<div class="cards"><div class="stat"><span class="label">Previstas hoje</span><strong id="statTotal">0</strong><small>ocorrências para hoje</small></div><div class="stat"><span class="label">Concluídas</span><strong id="statDone">0</strong><small>finalizadas hoje</small></div><div class="stat"><span class="label">Pendentes</span><strong id="statPending">0</strong><small>aguardando conclusão</small></div><div class="stat"><span class="label">Conclusão diária</span><strong id="statRate">0%</strong><small>do que foi previsto</small></div></div>
+<div class="panel"><div class="panel-head"><h3>Tarefas e hábitos de hoje</h3><span class="muted" id="todayCount"></span></div><div class="task-list" id="todayTasks"></div></div>
+<div class="panel"><div class="panel-head"><h3>Progresso dos últimos 7 dias</h3><button class="btn secondary" data-go="dashboard">Ver dashboard</button></div><div class="chart-wrap" id="miniChart"></div></div>
+</section>
+<section id="view-items" class="view">
+<div class="heading"><div><h2>Cadastro / Modificação de itens</h2><p>Gerencie hábitos, tarefas, objetivos e projetos recorrentes.</p></div><button class="btn" id="newItem">+ Inserir registro</button></div>
+<div class="panel hidden" id="itemFormPanel"><div class="panel-head"><h3 id="itemFormTitle">Novo item</h3><button class="icon-btn" id="closeItemForm">✕</button></div>
+<form id="itemForm"><input type="hidden" id="itemId"><div class="form-grid">
+<div class="field full"><label for="itemName">Nome do item *</label><input id="itemName" required maxlength="120" placeholder="Ex.: Ler 20 páginas"></div>
+<div class="field"><label for="itemCategory">Categoria *</label><select id="itemCategory" required></select></div>
+<div class="field"><label for="itemStatus">Status</label><select id="itemStatus"><option value="ativo">Ativo</option><option value="pausado">Pausado</option><option value="arquivado">Arquivado</option></select></div>
+<div class="field"><label for="startDate">Data inicial *</label><input type="date" id="startDate" required></div>
+<div class="field"><label for="endDate">Data final (opcional)</label><input type="date" id="endDate"></div>
+<div class="field"><label for="recurrence">Tipo de recorrência *</label><select id="recurrence"><option value="diaria">Diária</option><option value="semanal">Semanal</option><option value="quinzenal">Quinzenal</option><option value="mensal">Mensal</option><option value="trimestral">Trimestral</option><option value="semestral">Semestral</option><option value="anual">Anual</option><option value="personalizada">Personalizável</option><option value="unica">Sem recorrência (uma vez)</option></select></div>
+<div class="field" id="intervalField"><label for="intervalDays">Intervalo personalizado (dias)</label><input id="intervalDays" type="number" min="1" max="3650" value="1"></div>
+<div class="field full" id="weekDaysField"><label>Dias da semana (para recorrência semanal)</label><div class="inline" id="weekDays"><label class="checkline"><input type="checkbox" value="1"> Seg</label><label class="checkline"><input type="checkbox" value="2"> Ter</label><label class="checkline"><input type="checkbox" value="3"> Qua</label><label class="checkline"><input type="checkbox" value="4"> Qui</label><label class="checkline"><input type="checkbox" value="5"> Sex</label><label class="checkline"><input type="checkbox" value="6"> Sáb</label><label class="checkline"><input type="checkbox" value="0"> Dom</label></div></div>
+<div class="field full"><label for="itemDescription">Descrição / observação geral</label><textarea id="itemDescription" placeholder="Opcional: contexto, meta ou instruções"></textarea></div>
+</div><div class="form-actions"><button type="button" class="btn ghost" id="cancelItem">Cancelar</button><button type="submit" class="btn" id="saveItem">Salvar item</button></div></form></div>
+<div class="toolbar"><input id="itemSearch" class="search" placeholder="Buscar item..."><select id="itemCategoryFilter"><option value="">Todas as categorias</option></select><select id="itemStatusFilter"><option value="">Todos os status</option><option value="ativo">Ativos</option><option value="pausado">Pausados</option><option value="arquivado">Arquivados</option></select></div>
+<div id="itemsList" class="item-list"></div>
+</section>
+<section id="view-dashboard" class="view">
+<div class="heading"><div><h2>Dashboard de evolução</h2><p>Acompanhe sua consistência e seu progresso ao longo do tempo.</p></div><select id="dashPeriod" aria-label="Período"><option value="7">Últimos 7 dias</option><option value="30" selected>Últimos 30 dias</option><option value="90">Últimos 90 dias</option></select></div>
+<div class="cards"><div class="stat"><span class="label">Itens ativos</span><strong id="dashActive">0</strong></div><div class="stat"><span class="label">Ocorrências previstas</span><strong id="dashExpected">0</strong></div><div class="stat"><span class="label">Ocorrências concluídas</span><strong id="dashCompleted">0</strong></div><div class="stat"><span class="label">Taxa de conclusão</span><strong id="dashRate">0%</strong></div></div>
+<div class="panel"><div class="panel-head"><h3>Conclusão por dia</h3><span class="muted">Concluídas ÷ previstas</span></div><div class="chart-wrap" id="dashChart"></div></div>
+<div class="panel"><div class="panel-head"><h3>Progresso por item</h3></div><div id="itemProgress" class="item-list"></div></div>
+<div class="panel"><div class="panel-head"><h3>Resumo por categoria</h3></div><div id="categoryProgress" class="item-list"></div></div>
+</section>
+<section id="view-shopping" class="view">
+<div class="heading"><div><h2>Lista de compras</h2><p>Adicione o que precisa comprar e marque os itens concluídos.</p></div><button class="btn" id="showBuyForm">+ Incluir item</button></div>
+<div class="panel hidden" id="buyFormPanel"><form id="buyForm"><div class="form-grid"><div class="field"><label for="buyDescription">Descrição *</label><input id="buyDescription" required maxlength="140" placeholder="Ex.: Arroz"></div><div class="field"><label for="buyQuantity">Quantidade *</label><input id="buyQuantity" required maxlength="60" placeholder="Ex.: 2 pacotes"></div></div><div class="form-actions"><button type="button" class="btn ghost" id="cancelBuy">Cancelar</button><button class="btn" type="submit">Adicionar</button></div></form></div>
+<div class="panel"><div class="panel-head"><h3>Itens da lista</h3><span class="muted" id="buySummary">0 itens</span></div><div id="shoppingList"></div><div class="form-actions"><button class="btn ghost" id="clearBought">Remover comprados</button></div></div>
+</section>
+<section id="view-categories" class="view">
+<div class="heading"><div><h2>Categorias</h2><p>Personalize as categorias usadas no cadastro dos itens.</p></div></div>
+<div class="panel"><h3>Adicionar categoria</h3><form id="categoryForm" class="inline" style="margin-top:12px"><input class="search" id="newCategoryName" maxlength="40" placeholder="Nome da categoria" required><button class="btn" type="submit">Adicionar</button></form></div>
+<div class="panel"><div class="panel-head"><h3>Categorias cadastradas</h3><span class="muted">Categorias em uso não podem ser removidas.</span></div><div id="categoryList" class="category-manager"></div></div>
+</section>
+</main><footer class="foot">Sistema Tarefas · Seus registros são salvos no Firebase Firestore.</footer>
+</div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc, writeBatch } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD3Re4wqCJ9jqR721KjU3xwl5D3EvIhQQ",
+  authDomain: "habitos-fb6dc.firebaseapp.com",
+  projectId: "habitos-fb6dc",
+  storageBucket: "habitos-fb6dc.firebasestorage.app",
+  messagingSenderId: "225159855264",
+  appId: "1:225159855264:web:717d22a874bde299299dc5"
+};
+const $ = id => document.getElementById(id);
+const app = initializeApp(firebaseConfig), db = getFirestore(app);
+const COL = {items:"itens", occ:"ocorrencias", buys:"compras", cats:"categorias"};
+let items=[], occurrences=new Map(), buys=[], categories=["Hábito","Tarefa","Projeto","Objetivo","Outros"], busy=false;
+const today = () => {const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`};
+const dateObj = s => {const [y,m,d]=(s||"").split("-").map(Number);return new Date(y||2000,(m||1)-1,d||1,12)};
+const dateStr = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const fmtDate = s => s ? dateObj(s).toLocaleDateString("pt-BR") : "—";
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid = () => crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+const notify = (msg, bad=false) => {const n=$("notice");n.textContent=msg;n.style.background=bad?"#fff0f0":"#e9f5ee";n.style.color=bad?"#9c2929":"#176b55";n.classList.add("show");setTimeout(()=>n.classList.remove("show"),5000)};
+function setBusy(v){busy=v;document.body.classList.toggle("loading",v)}
+function setView(name){document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===`view-${name}`));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===name));if(name==="dashboard")renderDashboard();if(name==="items")renderItems();if(name==="shopping")renderBuys();if(name==="categories")renderCategories();window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>setView(b.dataset.view)));
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>setView(b.dataset.go)));
+$("todayLabel").textContent=new Date().toLocaleDateString("pt-BR",{weekday:"long",day:"2-digit",month:"long",year:"numeric"});
+async function loadAll(){
+ setBusy(true);
+ try {
+  const [is,os,bs,cs]=await Promise.all([getDocs(collection(db,COL.items)),getDocs(collection(db,COL.occ)),getDocs(collection(db,COL.buys)),getDocs(collection(db,COL.cats))]);
+  items=is.docs.map(d=>({id:d.id,...d.data()})); occurrences=new Map(os.docs.map(d=>[d.id,{id:d.id,...d.data()}])); buys=bs.docs.map(d=>({id:d.id,...d.data()}));
+  const saved=cs.docs.map(d=>d.data().name).filter(Boolean);if(saved.length)categories=[...new Set(saved)];
+  // Initialize default categories only when no category documents exist.
+  if(!cs.size){const batch=writeBatch(db);categories.forEach(name=>batch.set(doc(db,COL.cats,slug(name)),{name,createdAt:new Date().toISOString()}));await batch.commit();}
+  await ensureOccurrences();renderAll();
+ } catch(e){console.error(e);notify("Não foi possível carregar os dados do Firebase. Confira a conexão e as regras do Firestore. "+(e.code||e.message),true);}
+ finally{setBusy(false)}
+}
+function slug(s){return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||uid()}
+function recurrenceDue(it, day){
+ const start=it.startDate||day, end=it.endDate||"";
+ if(day<start || (end&&day>end) || it.status!=="ativo")return false;
+ const a=dateObj(start), b=dateObj(day), diff=Math.floor((b-a)/86400000), rec=it.recurrence||"diaria";
+ if(rec==="unica")return day===start;
+ if(rec==="diaria")return true;
+ if(rec==="semanal"){const days=Array.isArray(it.weekDays)&&it.weekDays.length?it.weekDays:[a.getDay()];return days.includes(b.getDay());}
+ const intervals={quinzenal:14,mensal: null,trimestral:null,semestral:null,anual:null,personalizada:Math.max(1,Number(it.intervalDays)||1)};
+ if(rec==="quinzenal"||rec==="personalizada")return diff%intervals[rec]===0;
+ const months={mensal:1,trimestral:3,semestral:6,anual:12};
+ if(months[rec]){const md=(b.getFullYear()-a.getFullYear())*12+b.getMonth()-a.getMonth();return md>=0&&md%months[rec]===0&&b.getDate()===a.getDate();}
+ return false;
+}
+function occId(itemId,day){return `${itemId}__${day}`}
+async function ensureOccurrences(){
+ const start=new Date();start.setDate(start.getDate()-90);const end=new Date();end.setDate(end.getDate()+365);
+ const batch=writeBatch(db);let count=0;
+ for(const it of items){if(it.status!=="ativo")continue;const begin=dateObj(it.startDate||today());const from=begin>start?begin:start;const until=it.endDate&&dateObj(it.endDate)<end?dateObj(it.endDate):end;
+  for(let d=new Date(from);d<=until;d.setDate(d.getDate()+1)){const day=dateStr(d);if(!recurrenceDue(it,day))continue;const id=occId(it.id,day);if(!occurrences.has(id)){batch.set(doc(db,COL.occ,id),{itemId:it.id,date:day,done:false,observation:"",createdAt:new Date().toISOString()});count++;}}
+ }
+ if(count){await batch.commit();const snap=await getDocs(collection(db,COL.occ));occurrences=new Map(snap.docs.map(d=>[d.id,{id:d.id,...d.data()}]));}
+}
+function getOcc(it,day){return occurrences.get(occId(it.id,day))}
+function sortedToday(){return items.filter(i=>i.status==="ativo"&&recurrenceDue(i,today())).map(i=>({item:i,occ:getOcc(i,today())})).sort((a,b)=>(a.occ?.done?1:0)-(b.occ?.done?1:0)||a.item.name.localeCompare(b.item.name,"pt-BR"))}
+function renderAll(){fillCategorySelects();renderHome();renderItems();renderBuys();renderCategories();renderDashboard()}
+function fillCategorySelects(){const opts=categories.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");const cur=$("itemCategory").value;$("itemCategory").innerHTML=opts;if(categories.includes(cur))$("itemCategory").value=cur;const f=$("itemCategoryFilter").value;$("itemCategoryFilter").innerHTML='<option value="">Todas as categorias</option>'+opts;if(categories.includes(f))$("itemCategoryFilter").value=f;}
+function taskHTML(item,occ,day){
+ const done=!!occ?.done, id=occ?.id||occId(item.id,day);
+ return `<article class="task ${done?"done":""}"><input type="checkbox" aria-label="Marcar ${esc(item.name)} como concluída" data-done="${esc(id)}" ${done?"checked":""}><div><div class="task-title">${esc(item.name)}</div><div class="task-meta"><span class="pill">${esc(item.category||"Sem categoria")}</span><span class="pill">${esc(recurrenceLabel(item))}</span></div></div><div class="task-actions"><button class="icon-btn" data-edit="${esc(item.id)}" title="Editar item">Editar</button></div><textarea class="obs" data-obs="${esc(id)}" placeholder="Observação em aberto...">${esc(occ?.observation||"")}</textarea></article>`;
+}
+function renderHome(){
+ const arr=sortedToday(), done=arr.filter(x=>x.occ?.done).length,total=arr.length;
+ $("statTotal").textContent=total;$("statDone").textContent=done;$("statPending").textContent=total-done;$("statRate").textContent=`${total?Math.round(done/total*100):0}%`;$("todayCount").textContent=`${total} ${total===1?"item":"itens"}`;
+ $("todayTasks").innerHTML=arr.length?arr.map(x=>taskHTML(x.item,x.occ,today())).join(""):`<div class="empty"><div class="emoji">☀️</div><strong>Nenhum item previsto para hoje</strong><p>Cadastre um hábito ou tarefa para começar.</p><button class="btn" data-add-first>+ Criar item</button></div>`;
+ $("miniChart").innerHTML=chartHTML(7);
+}
+function recurrenceLabel(it){const names={diaria:"Diária",semanal:"Semanal",quinzenal:"Quinzenal",mensal:"Mensal",trimestral:"Trimestral",semestral:"Semestral",anual:"Anual",personalizada:`A cada ${it.intervalDays||1} dia(s)`,unica:"Uma vez"};return names[it.recurrence]||"Diária"}
+function renderItems(){
+ const search=$("itemSearch").value.toLocaleLowerCase("pt-BR"),cat=$("itemCategoryFilter").value,status=$("itemStatusFilter").value;
+ const arr=items.filter(i=>(!search||`${i.name} ${i.description||""}`.toLocaleLowerCase("pt-BR").includes(search))&&(!cat||i.category===cat)&&(!status||i.status===status)).sort((a,b)=>a.name.localeCompare(b.name,"pt-BR"));
+ $("itemsList").innerHTML=arr.length?arr.map(i=>{const all=[...occurrences.values()].filter(o=>o.itemId===i.id&&o.date<=today());const done=all.filter(o=>o.done).length,rate=all.length?Math.round(done/all.length*100):0;return `<article class="item-card"><div class="item-top"><div><h4>${esc(i.name)}</h4><p>${esc(i.description||"Sem descrição")}</p></div><span class="pill">${esc(i.status||"ativo")}</span></div><div class="task-meta"><span class="pill">${esc(i.category||"Outros")}</span><span class="pill">${esc(recurrenceLabel(i))}</span><span class="pill">Desde ${fmtDate(i.startDate)}</span></div><div style="margin:13px 0 6px;display:flex;justify-content:space-between;font-size:12px"><span class="muted">Histórico de ocorrências</span><strong>${rate}%</strong></div><div class="progress"><span style="width:${rate}%"></span></div><div class="item-actions"><button class="btn secondary" data-edit="${esc(i.id)}">Editar</button>${i.status==="ativo"?`<button class="btn ghost" data-status="${esc(i.id)}" data-next="pausado">Pausar</button>`:`<button class="btn ghost" data-status="${esc(i.id)}" data-next="ativo">Ativar</button>`}<button class="btn danger" data-status="${esc(i.id)}" data-next="arquivado">Arquivar</button></div></article>`}).join(""):`<div class="panel empty"><div class="emoji">🗂️</div><strong>Nenhum item encontrado</strong><p>Crie um registro ou altere os filtros.</p></div>`;
+}
+function chartHTML(days){
+ const end=dateObj(today()),data=[];for(let n=days-1;n>=0;n--){const d=new Date(end);d.setDate(d.getDate()-n);const s=dateStr(d),dayOcc=[...occurrences.values()].filter(o=>o.date===s),expected=dayOcc.length,done=dayOcc.filter(o=>o.done).length;data.push({s,label:days<=7?d.toLocaleDateString("pt-BR",{weekday:"short"}).replace(".",""):String(d.getDate())+"/"+String(d.getMonth()+1),expected,done,rate:expected?Math.round(done/expected*100):0})}
+ return data.map(d=>`<div class="bar-col" title="${fmtDate(d.s)}: ${d.done}/${d.expected} concluídas"><div class="bar-val">${d.expected?d.rate+"%":"—"}</div><div class="bar" style="height:${Math.max(2,d.rate)}%"></div><div class="bar-label">${esc(d.label)}</div></div>`).join("");
+}
+function renderDashboard(){
+ const days=Number($("dashPeriod").value||30),cut=new Date(dateObj(today()));cut.setDate(cut.getDate()-(days-1));const min=dateStr(cut),max=today();
+ const os=[...occurrences.values()].filter(o=>o.date>=min&&o.date<=max),done=os.filter(o=>o.done).length;
+ $("dashActive").textContent=items.filter(i=>i.status==="ativo").length;$("dashExpected").textContent=os.length;$("dashCompleted").textContent=done;$("dashRate").textContent=`${os.length?Math.round(done/os.length*100):0}%`;
+ $("dashChart").innerHTML=chartHTML(Math.min(days,30));
+ const eligible=items.filter(i=>i.status!=="arquivado");
+ $("itemProgress").innerHTML=eligible.length?eligible.map(i=>{const list=os.filter(o=>o.itemId===i.id),d=list.filter(o=>o.done).length,r=list.length?Math.round(d/list.length*100):0;return `<div class="item-card"><div class="item-top"><strong>${esc(i.name)}</strong><strong>${r}%</strong></div><p>${esc(i.category||"Outros")} · ${d} de ${list.length} concluídas no período</p><div class="progress"><span style="width:${r}%"></span></div></div>`}).join(""):`<div class="empty">Cadastre itens para acompanhar o progresso.</div>`;
+ const cats=[...new Set([...categories,...items.map(i=>i.category).filter(Boolean)])];
+ $("categoryProgress").innerHTML=cats.map(c=>{const ids=items.filter(i=>i.category===c).map(i=>i.id),list=os.filter(o=>ids.includes(o.itemId)),d=list.filter(o=>o.done).length,r=list.length?Math.round(d/list.length*100):0;return `<div class="item-card"><div class="item-top"><strong>${esc(c)}</strong><strong>${r}%</strong></div><p>${d} de ${list.length} ocorrências concluídas</p><div class="progress"><span style="width:${r}%"></span></div></div>`}).join("");
+}
+function renderBuys(){
+ const open=buys.filter(b=>!b.bought),bought=buys.filter(b=>b.bought);$("buySummary").textContent=`${open.length} pendentes · ${bought.length} comprados`;
+ const list=[...open,...bought];$("shoppingList").innerHTML=list.length?list.map(b=>`<div class="buy-row ${b.bought?"checked":""}"><input type="checkbox" data-buy-check="${esc(b.id)}" ${b.bought?"checked":""} aria-label="Marcar ${esc(b.description)}"><div class="buy-desc">${esc(b.description)}</div><div class="qty">${esc(b.quantity)}</div><button class="icon-btn buy-delete" data-buy-delete="${esc(b.id)}" aria-label="Excluir ${esc(b.description)}">✕</button></div>`).join(""):`<div class="empty"><div class="emoji">🛒</div><strong>Sua lista está vazia</strong><p>Inclua os itens que precisa comprar.</p></div>`;
+}
+function renderCategories(){
+ $("categoryList").innerHTML=categories.map(c=>{const used=items.some(i=>i.category===c);return `<span class="category-chip">${esc(c)} <button data-cat-delete="${esc(c)}" title="${used?"Categoria em uso":"Excluir categoria"}" ${used?"disabled":""}>×</button></span>`}).join("");
+}
+function openItemForm(item=null){
+ fillCategorySelects();$("itemForm").reset();$("itemId").value=item?.id||"";$("itemFormTitle").textContent=item?"Modificar item":"Inserir registro";$("itemName").value=item?.name||"";$("itemCategory").value=item?.category||categories[0]||"";$("itemStatus").value=item?.status||"ativo";$("startDate").value=item?.startDate||today();$("endDate").value=item?.endDate||"";$("recurrence").value=item?.recurrence||"diaria";$("intervalDays").value=item?.intervalDays||1;$("itemDescription").value=item?.description||"";document.querySelectorAll('#weekDays input').forEach(c=>c.checked=(item?.weekDays||[]).includes(Number(c.value)));toggleRecurrence();$("itemFormPanel").classList.remove("hidden");$("itemFormPanel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function toggleRecurrence(){$("intervalField").classList.toggle("hidden",$("recurrence").value!=="personalizada");$("weekDaysField").classList.toggle("hidden",$("recurrence").value!=="semanal")}
+$("recurrence").addEventListener("change",toggleRecurrence);$("newItem").onclick=()=>openItemForm();$("quickAdd").onclick=()=>{setView("items");openItemForm()};$("closeItemForm").onclick=$("cancelItem").onclick=()=>$("itemFormPanel").classList.add("hidden");$("itemSearch").addEventListener("input",renderItems);$("itemCategoryFilter").onchange=renderItems;$("itemStatusFilter").onchange=renderItems;$("dashPeriod").onchange=renderDashboard;
+$("itemForm").addEventListener("submit",async e=>{e.preventDefault();if(busy)return;const id=$("itemId").value||uid(),startDate=$("startDate").value,endDate=$("endDate").value;if(endDate&&endDate<startDate)return notify("A data final não pode ser anterior à data inicial.",true);
+ const item={name:$("itemName").value.trim(),category:$("itemCategory").value,status:$("itemStatus").value,startDate,endDate,recurrence:$("recurrence").value,intervalDays:Math.max(1,Number($("intervalDays").value)||1),weekDays:[...document.querySelectorAll('#weekDays input:checked')].map(c=>Number(c.value)),description:$("itemDescription").value.trim(),updatedAt:new Date().toISOString()};
+ if(!item.name)return notify("Informe o nome do item.",true);if(item.recurrence==="semanal"&&!item.weekDays.length)item.weekDays=[dateObj(startDate).getDay()];
+ setBusy(true);try{const old=items.find(i=>i.id===id);await setDoc(doc(db,COL.items,id),{...item,createdAt:old?.createdAt||new Date().toISOString()});items=items.filter(i=>i.id!==id).concat({id,...item});$("itemFormPanel").classList.add("hidden");await ensureOccurrences();renderAll();notify("Item salvo com sucesso.");}catch(err){console.error(err);notify("Erro ao salvar item: "+(err.code||err.message),true)}finally{setBusy(false)}
+});
+document.addEventListener("click",async e=>{
+ const edit=e.target.closest("[data-edit]");if(edit){const item=items.find(i=>i.id===edit.dataset.edit);if(item){setView("items");openItemForm(item)}}
+ const add=e.target.closest("[data-add-first]");if(add){setView("items");openItemForm()}
+ const stat=e.target.closest("[data-status]");if(stat){const i=items.find(x=>x.id===stat.dataset.status);if(!i)return;const next=stat.dataset.next;if(next==="arquivado"&&!confirm(`Arquivar "${i.name}"? O histórico será mantido.`))return;try{await setDoc(doc(db,COL.items,i.id),{...i,status:next,updatedAt:new Date().toISOString()});items=items.map(x=>x.id===i.id?{...x,status:next}:x);await ensureOccurrences();renderAll();notify("Status atualizado.")}catch(err){notify("Não foi possível atualizar: "+err.message,true)}}
+ const del=e.target.closest("[data-buy-delete]");if(del&&confirm("Excluir este item da lista de compras?")){try{await deleteDoc(doc(db,COL.buys,del.dataset.buyDelete));buys=buys.filter(b=>b.id!==del.dataset.buyDelete);renderBuys()}catch(err){notify("Erro ao excluir: "+err.message,true)}}
+ const cat=e.target.closest("[data-cat-delete]");if(cat&&!cat.querySelector("button")?.disabled){const name=cat.dataset.catDelete;if(items.some(i=>i.category===name))return notify("A categoria está em uso.",true);try{await deleteDoc(doc(db,COL.cats,slug(name)));categories=categories.filter(c=>c!==name);renderCategories();fillCategorySelects();notify("Categoria removida.")}catch(err){notify("Erro ao remover categoria: "+err.message,true)}}
+});
+document.addEventListener("change",async e=>{
+ const done=e.target.closest("[data-done]");if(done){const id=done.dataset.done;let occ=occurrences.get(id);if(!occ){const it=items.find(i=>id===occId(i.id,today()));if(!it)return;occ={id,itemId:it.id,date:today(),done:false,observation:""}}
+ const next={...occ,done:done.checked,completedAt:done.checked?new Date().toISOString():null,updatedAt:new Date().toISOString()};try{await setDoc(doc(db,COL.occ,id),next);occurrences.set(id,next);renderHome();renderDashboard()}catch(err){done.checked=!done.checked;notify("Erro ao registrar conclusão: "+err.message,true)}}
+ const check=e.target.closest("[data-buy-check]");if(check){const id=check.dataset.buyCheck,b=buys.find(x=>x.id===id);if(!b)return;const next={...b,bought:check.checked,updatedAt:new Date().toISOString()};try{await setDoc(doc(db,COL.buys,id),next);buys=buys.map(x=>x.id===id?next:x);renderBuys()}catch(err){notify("Erro ao atualizar compra: "+err.message,true)}}
+});
+let obsTimers=new Map();
+document.addEventListener("input",e=>{const area=e.target.closest("[data-obs]");if(!area)return;const id=area.dataset.obs;clearTimeout(obsTimers.get(id));obsTimers.set(id,setTimeout(async()=>{const old=occurrences.get(id);if(!old)return;const next={...old,observation:area.value,updatedAt:new Date().toISOString()};try{await setDoc(doc(db,COL.occ,id),next);occurrences.set(id,next);notify("Observação salva.")}catch(err){notify("Erro ao salvar observação: "+err.message,true)}},650))});
+$("showBuyForm").onclick=()=>$("buyFormPanel").classList.toggle("hidden");$("cancelBuy").onclick=()=>$("buyFormPanel").classList.add("hidden");
+$("buyForm").addEventListener("submit",async e=>{e.preventDefault();const b={id:uid(),description:$("buyDescription").value.trim(),quantity:$("buyQuantity").value.trim(),bought:false,createdAt:new Date().toISOString()};if(!b.description||!b.quantity)return;try{await setDoc(doc(db,COL.buys,b.id),b);buys.unshift(b);$("buyForm").reset();$("buyFormPanel").classList.add("hidden");renderBuys();notify("Item adicionado à lista.")}catch(err){notify("Erro ao adicionar compra: "+(err.code||err.message),true)}});
+$("clearBought").onclick=async()=>{const list=buys.filter(b=>b.bought);if(!list.length)return notify("Não há itens comprados para remover.");if(!confirm(`Remover ${list.length} item(ns) comprado(s)?`))return;try{const batch=writeBatch(db);list.forEach(b=>batch.delete(doc(db,COL.buys,b.id)));await batch.commit();buys=buys.filter(b=>!b.bought);renderBuys();notify("Itens comprados removidos.")}catch(err){notify("Erro ao remover itens: "+err.message,true)}};
+$("categoryForm").addEventListener("submit",async e=>{e.preventDefault();const name=$("newCategoryName").value.trim();if(!name)return;if(categories.some(c=>c.toLocaleLowerCase("pt-BR")===name.toLocaleLowerCase("pt-BR")))return notify("Essa categoria já existe.",true);try{await setDoc(doc(db,COL.cats,slug(name)),{name,createdAt:new Date().toISOString()});categories.push(name);$("newCategoryName").value="";fillCategorySelects();renderCategories();renderItems();notify("Categoria criada.")}catch(err){notify("Erro ao criar categoria: "+(err.code||err.message),true)}});
+loadAll();
+</script>
+</body></html>
